@@ -28,7 +28,7 @@ class Review(models.Model):
 	view_count = models.IntegerField()
 
 	def __str__(self):
-		return f'제목 : {self.title}, 후기 번호: {self.review_id}, 내용 : {self.content}, 공연 번호: {self.id2}'
+		return f'제목 : {self.title}, 후기 번호: {self.review_num}, 내용 : {self.content}, 공연 번호: {self.performance_id}'
 
 
 class File(models.Model):
