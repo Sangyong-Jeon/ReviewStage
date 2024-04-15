@@ -3,7 +3,6 @@ from django.db import models
 
 # Create your models here.
 class Performance(models.Model):
-	id = models.IntegerField()
 	performance_num = models.IntegerField()
 	title = models.CharField(max_length=50)
 	location = models.CharField(max_length=50)
@@ -18,9 +17,8 @@ class Performance(models.Model):
 
 
 class Review(models.Model):
-	id = models.IntegerField()
-	id2 = models.ForeignKey(Performance, on_delete=models.CASCADE)
-	review_id = models.IntegerField(max_length=20)
+	performance_id = models.ForeignKey(Performance, on_delete=models.CASCADE)
+	review_num = models.IntegerField(max_length=20)
 	title = models.CharField(max_length=50)
 	content = models.TextField()
 	user_id = models.CharField(max_length=50)
@@ -34,8 +32,7 @@ class Review(models.Model):
 
 
 class File(models.Model):
-	id = models.IntegerField()
-	id2 = models.IntegerField()
+	performance_id = models.ForeignKey(Performance, on_delete=models.CASCADE)
 	name = models.CharField(max_length=50)
 	store_path = models.CharField(max_length=100)
 
