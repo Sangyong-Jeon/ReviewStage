@@ -84,3 +84,4 @@ reviewstage/db.sqlite3
 *.DS_Store
 reviewstage/stage/__pycache__/*
 reviewstage/stage/migrations/__pycache__/*
+*.pyc
