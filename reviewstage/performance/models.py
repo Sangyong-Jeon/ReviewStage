@@ -1,3 +1,6 @@
+import uuid
+from uuid import UUID
+
 from django.db import models
 
 
@@ -10,7 +13,7 @@ class Performance(models.Model):
     performance_time = models.CharField(max_length=50)
     age_requirement = models.CharField(max_length=50)
     performance_type = models.CharField(max_length=50)
-    image_path = models.CharField(max_length=100)
+    image = models.ImageField(upload_to='poster/', default='default.png')
 
     def __str__(self):
         return f'제목 : {self.title}, 장소 : {self.location}, 공연 날짜 : {self.start_date} ~ {self.end_date}, 공연 번호: {self.performance_num}'
