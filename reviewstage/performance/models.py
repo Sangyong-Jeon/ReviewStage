@@ -2,13 +2,13 @@ from django.db import models
 
 
 class Performance(models.Model):
-    performance_num = models.IntegerField()
+    performance_num = models.CharField(max_length=50)
     title = models.CharField(max_length=50)
     location = models.CharField(max_length=50)
-    start_date = models.DateField()
-    end_date = models.DateField()
-    performance_time = models.DateTimeField()
-    age_requirement = models.IntegerField()
+    start_date = models.CharField(max_length=50)
+    end_date = models.CharField(max_length=50)
+    performance_time = models.CharField(max_length=50)
+    age_requirement = models.CharField(max_length=50)
     performance_type = models.CharField(max_length=50)
     image_path = models.CharField(max_length=100)
 
