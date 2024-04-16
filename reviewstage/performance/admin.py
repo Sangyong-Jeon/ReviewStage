@@ -6,6 +6,5 @@ from .models import *
 # id : test01
 # PW : test01
 
-admin.site.register(Info)
+admin.site.register(Performance)
 admin.site.register(Review)
-
