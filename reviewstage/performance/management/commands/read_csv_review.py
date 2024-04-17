@@ -21,7 +21,7 @@ class Command(BaseCommand):
             self.stdout.write(self.style.ERROR(f'An unknown error occurred: {e}'))
 
     def import_data(self, csv_file):
-        with open(csv_file, 'r') as file:
+        with open(csv_file, 'r', encoding='UTF8') as file:
             reader = csv.DictReader(file)
             for row in reader:
                 self.create_review(row)
