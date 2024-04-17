@@ -37,7 +37,6 @@ class Command(BaseCommand):
                 performance_time=data['performance_time'],
                 age_requirement=data['age_requirement'],
                 performance_type=data['performance_type'],
-                # image=data['image']
             )
         except Exception as e:
             self.handle_error(data, e)
