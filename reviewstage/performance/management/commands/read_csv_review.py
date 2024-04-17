@@ -14,7 +14,7 @@ class Command(BaseCommand):
         csv_file = kwargs['csv_file']
         try:
             self.import_data(csv_file)
-            self.stdout.write(self.style.SUCCESS('CSV 파일 이전 완료'))
+            self.stdout.write(self.style.SUCCESS('Review_CSV 파일 이전 완료'))
         except FileNotFoundError:
             self.stdout.write(self.style.ERROR('File not found. Please check the file again.'))
         except Exception as e:
@@ -30,7 +30,7 @@ class Command(BaseCommand):
         try:
             Review.objects.create(
                 performance_id=Performance.objects.get(performance_num=data['performance_num']),
-                review_num=int(data['review_num']),
+                review_num=data['review_num'],
                 title=data['title'],
                 content=data['content'],
                 user_id=data['user_id'],

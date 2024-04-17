@@ -14,14 +14,14 @@ class Command(BaseCommand):
         csv_file = kwargs['csv_file']
         try:
             self.import_data(csv_file)
-            self.stdout.write(self.style.SUCCESS('CSV 파일 이전 완료'))
+            self.stdout.write(self.style.SUCCESS('Performance_CSV 파일 이전 완료'))
         except FileNotFoundError:
             self.stdout.write(self.style.ERROR('File not found. Please check the file again.'))
         except Exception as e:
             self.stdout.write(self.style.ERROR(f'An unknown error occurred: {e}'))
 
     def import_data(self, csv_file):
-        with open(csv_file, 'r') as file:
+        with open(csv_file, 'r', encoding='UTF8') as file:  # Specify the encoding here
             reader = csv.DictReader(file)
             for row in reader:
                 self.create_performance(row)
@@ -29,7 +29,7 @@ class Command(BaseCommand):
     def create_performance(self, data):
         try:
             Performance.objects.create(
-                performance_num=int(data['performance_num']),
+                performance_num=data['performance_num'],
                 title=data['title'],
                 location=data['location'],
                 start_date=data['start_date'],
@@ -37,7 +37,7 @@ class Command(BaseCommand):
                 performance_time=data['performance_time'],
                 age_requirement=data['age_requirement'],
                 performance_type=data['performance_type'],
-                image_path=data['image_path']
+                # image=data['image']
             )
         except Exception as e:
             self.handle_error(data, e)
