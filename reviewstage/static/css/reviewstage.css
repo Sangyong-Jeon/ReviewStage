@@ -32,8 +32,8 @@ li {
     float: left;
 }
 
-.slides li:not(:last-child) {
-    margin-right: 30px;
+.slides li {
+    margin-right: 29px;
 }
 
 .controls {
