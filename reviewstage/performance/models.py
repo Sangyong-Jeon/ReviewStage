@@ -36,7 +36,6 @@ class File(models.Model):
     name = models.CharField(max_length=50)
     image = models.ImageField(upload_to='visual/', default='default_visual.png')
 
-
     def __str__(self):
         return f'파일명 : {self.name}'
 
