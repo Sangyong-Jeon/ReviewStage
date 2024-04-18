@@ -8,7 +8,6 @@ from rest_framework.views import APIView
 from rest_framework import viewsets
 
 
-
 class PerformanceViewSet(viewsets.ModelViewSet):
     queryset = Performance.objects.all()
     serializer_class = PerformanceSerializer
@@ -36,4 +35,3 @@ class UserDetail(generics.RetrieveAPIView):
 
 class RegisterUser(generics.CreateAPIView):
     serializer_class = RegisterSerializer
-
