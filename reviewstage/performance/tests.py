@@ -1,3 +1,4 @@
+from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import TestCase
 from .models import Performance, Review, File
 from django.core.management import call_command
