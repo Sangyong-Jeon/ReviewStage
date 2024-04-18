@@ -9,20 +9,94 @@
 
 {% block content %}
     {# 공연 포스터 슬라이드 배너 #}
+    <section>
+        <div class="slide_wrapper">
+            <ul class="slides">
+                {% for performance, file in performance_files.items %}
+                    <li>
+                        <img src="{{ file.image.url }}" alt="{{ file.name }}"
+                             data-pk="{{ performance.performance_id }}">
+                    </li>
+                {% endfor %}
+            </ul>
 
-    <div class="slide_wrapper">
-        <ul class="slides">
-            {% for performance, file in performance_files.items %}
-                <li><img src="{{ file.image.url }}" alt="{{ file.name }}"></li>
-            {% endfor %}
-        </ul>
+        </div>
+        <p class="controls">
+            <span class="prev">prev</span>
+            <span class="next">next</span>
+        </p>
+    </section>
 
-    </div>
-    <p class="controls">
-        <span class="prev">prev</span>
-        <span class="next">next</span>
-    </p>
+    <section class="container_info">
+        {# 공연 정보 불러오기 #}
+        <div class="performance_info">
+            <h3>제목 : </h3>
+            <h3>장소 : </h3>
+            <h3>기간 : </h3>
+            <h3>공연시간 : </h3>
+            <h3>관람연령 : </h3>
+        </div>
 
+        {# 시각화 불러오기 #}
+        <div class="performance_visual">
 
+        </div>
+    </section>
     <script src="{% static 'js/reviewstage.js' %}"></script>
+{% endblock %}
+
+{% block extra-script %}
+    <script>
+        $(document).ready(function () {
+            $('.slides img').click(function () {
+                var pk = String($(this).data('pk'));
+                getVisualImage(pk);
+
+                if (pk.endsWith('#')) {
+                    pk = pk.replace(/#/g, '%23')
+                }
+                getPerformanceDetails(pk);
+
+            });
+
+            // 공연 정보 가져오는 함수
+            function getPerformanceDetails(pk) {
+                $.ajax({
+                    type: 'GET',
+                    url: `/rest/performances/${pk}/`,
+                    success: function (data) {
+                        $('.performance_info h3:nth-child(1)').text('제목 : ' + data.title);
+                        $('.performance_info h3:nth-child(2)').text('장소 : ' + data.location);
+                        $('.performance_info h3:nth-child(3)').text('기간 : ' + data.start_date + ' ~ ' + data.end_date);
+                        $('.performance_info h3:nth-child(4)').text('공연시간 : ' + data.performance_time);
+                        $('.performance_info h3:nth-child(5)').text('관람연령 : ' + data.age_requirement);
+                    },
+                    error: function (xhr, textStatus, errorThrown) {
+                        console.log('Error:', errorThrown);
+                    }
+                });
+            }
+
+            // 시각화 이미지 가져오는 함수
+            function getVisualImage(pk) {
+                $.ajax({
+                    type: 'GET',
+                    url: '/rest/files/visual/',
+                    data: {
+                        'performance_id': pk
+                    },
+                    success: function (data) {
+                        $('.performance_visual').html(`<img src="${data.image}" alt="${data.name}" class="visual_img">`);
+                    },
+                    error: function (xhr, textStatus, errorThrown) {
+                        console.log('Error:', errorThrown);
+                    }
+                })
+            }
+        });
+
+        document.getElementById("loginBtn").addEventListener("click", (e) => {
+            window.location.href = "http://127.0.0.1:8000/performance/login";
+        });
+    </script>
 {% endblock %}
