@@ -29,14 +29,14 @@ class Command(BaseCommand):
     def create_review(self, data):
         try:
             Review.objects.create(
-                performance_id=Performance.objects.get(performance_num=data['performance_num']),
+                performance_id=Performance.objects.get(performance_id=data['performance_id']),
                 review_num=data['review_num'],
                 title=data['title'],
                 content=data['content'],
                 user_id=data['user_id'],
                 rating=int(data['rating']),
                 date=data['date'],
-                likes_count=int(data['likes_count']),
+                like_count=int(data['like_count']),
                 view_count=int(data['view_count'])
             )
         except Exception as e:

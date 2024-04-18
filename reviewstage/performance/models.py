@@ -26,7 +26,7 @@ class Review(models.Model):
     user_id = models.CharField(max_length=50)
     rating = models.IntegerField()
     date = models.CharField(max_length=50)
-    likes_count = models.IntegerField()
+    like_count = models.IntegerField()
     view_count = models.IntegerField()
 
     def __str__(self):
