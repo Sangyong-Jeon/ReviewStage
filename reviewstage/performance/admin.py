@@ -10,3 +10,4 @@ from .models import *
 admin.site.register(Performance)
 admin.site.register(Review)
 admin.site.register(File)
+admin.site.register(Bookmark)

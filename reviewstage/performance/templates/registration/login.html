@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .login-container {
+            text-align: center;
+            border: 2px solid black; /* Add black border */
+            padding: 20px; /* Add some padding for spacing */
+        }
+
+        .login-button {
+            background-color: #4285f4;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .login-button:hover {
+            background-color: #3b79d3;
+        }
+
+        .signin-button {
+            background-color: white;
+            color: #3b79d3;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Login</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            {% if error %}
+                <p>{{ error }}</p>
+            {% endif %}
+            <button type="submit" class="login-button">Login</button>
+        </form>
+        <form action="{% url 'performance:signup' %}">
+            <button type="submit" class="signin-button">Sign Up</button>
+        </form>
+    </div>
+</body>
+</html>
