@@ -67,8 +67,7 @@ def info_scraping(title, type, key, driver) :
                                          "period", "performance_time",
                                          "age_requirement"])
 
-    dir = f"../data/rawdata/{type}_{title}_info.csv"
-    df.to_csv(dir, encoding='utf-8-sig', index=False)
+    df.to_csv(f"../data/rawdata/{type}_{title}_info.csv", encoding='utf-8-sig', index=False)
 
 
 ## 관람 후기 데이터 크롤링
@@ -93,7 +92,7 @@ def review_scraping(title, type, key, driver) : # 작품명, 드라이버
     except :
         # url도 함께 조정
         n = int(driver.find_element(By.XPATH, "/html/body/div[1]/div[2]/div[1]/div[2]/div[2]/div/div/div[4]/div[1]/div[1]/div[1]/strong/span").text)
-        url = "/html/body/div[1]/div[2]/div[1]/div[2]/div[2]/div/div/div[3]/"
+        url = "/html/body/div[1]/div[2]/div[1]/div[2]/div[2]/div/div/div[4]/"
     sleep(1)
 
     data = [] # 데이터 저장 변수
@@ -150,8 +149,7 @@ def review_scraping(title, type, key, driver) : # 작품명, 드라이버
 
     # csv로 저장
     df = pandas.DataFrame(data, columns=["performance_id", "review_id", "rating", "user_id", "date", "view_count", "like_count", "title", "text"])
-    dir = f"../data/rawdata/{type}_{title}_review.csv"
-    df.to_csv(dir, encoding='utf-8-sig', index=False)
+    df.to_csv(f"../data/rawdata/{type}_{title}_review.csv", encoding='utf-8-sig', index=False)
 
 if __name__ == '__main__' :
     # 테스트용
