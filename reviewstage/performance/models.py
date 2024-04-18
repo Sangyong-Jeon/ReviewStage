@@ -34,8 +34,8 @@ class Review(models.Model):
 class File(models.Model):
     performance_id = models.ForeignKey(Performance, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
-    image = models.ImageField(upload_to='poster/', default='default.png')
-    # store_path = models.CharField(max_length=100)
+    image = models.ImageField(upload_to='visual/', default='default_visual.png')
+
 
     def __str__(self):
         return f'파일명 : {self.name}'
