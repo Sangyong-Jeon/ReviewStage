@@ -1,6 +1,12 @@
+from rest_framework.response import Response
+
+from performance.models import *
+from .serializers import *
+from django.contrib.auth.models import User
+from rest_framework import generics
+from rest_framework.views import APIView
 from rest_framework import viewsets
 
-from performance_api.serializers import *
 
 
 class PerformanceViewSet(viewsets.ModelViewSet):
@@ -16,3 +22,18 @@ class ReviewViewSet(viewsets.ModelViewSet):
 class FileViewSet(viewsets.ModelViewSet):
     queryset = File.objects.all()
     serializer_class = FileSerializer
+
+
+class UserList(generics.ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+
+class UserDetail(generics.RetrieveAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+
+class RegisterUser(generics.CreateAPIView):
+    serializer_class = RegisterSerializer
+
