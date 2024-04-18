@@ -47,3 +47,22 @@ li {
     padding: 10px 20px;
     margin: 0 10px;
 }
+
+.visual_img {
+    width: 400px;
+    height: auto;
+}
+
+.container_info {
+    display: flex; /* Flexbox를 사용하여 내부 요소를 가로로 정렬 */
+}
+
+.performance_info {
+    flex: 1; /* 자동으로 공간을 할당하여 화면의 왼쪽에 배치 */
+    padding: 20px; /* 간격 추가 */
+}
+
+.performance_visual {
+    flex: 1; /* 자동으로 공간을 할당하여 화면의 오른쪽에 배치 */
+    padding: 20px; /* 간격 추가 */
+}
