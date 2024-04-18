@@ -33,20 +33,6 @@ class PerformanceTestCase(TestCase):
 		self.performance.save()
 		self.assertEqual(Performance.objects.count(), 1)
 
-	# def test_invalid(self):
-	# 	performance = Performance.objects.create(
-	# 		performance_num='23001653213',
-	# 		title='영웅',
-	# 		location='블루스퀘어 신한카드홀',
-	# 		start_date='2023.03.17',
-	# 		end_date='2023.05.21',
-	# 		performance_time='160분(인터미션 20분 포함)',
-	# 		age_requirement='8세이상 관람가능',
-	# 		performance_type='뮤지컬',
-	# 	)
-	# 	self.save()
-	# 	self.
-
 	def test_performance_title(self):
 		self.assertEqual(self.performance.title, '영웅')
 
