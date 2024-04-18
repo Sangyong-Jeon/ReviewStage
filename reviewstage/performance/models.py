@@ -37,7 +37,7 @@ class File(models.Model):
     performance_id = models.ForeignKey(Performance, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
     type = models.CharField(max_length=50, choices=[(e.name, e.value) for e in FileType])
-    image = models.ImageField(upload_to='visual/', default='default_visual.png')
+    image = models.ImageField(upload_to='image/', default='default.png')
 
     def __str__(self):
         return f'파일명 : {self.name}'
