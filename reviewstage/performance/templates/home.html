@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}home.html{% endblock %}
+
+{% block extra-style %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/reviewstage.css' %}">
+{% endblock %}
+
+{% block content %}
+    {# 공연 포스터 슬라이드 배너 #}
+
+    <div class="slide_wrapper">
+        <ul class="slides">
+            <li>slide 01</li>
+            <li>slide 02</li>
+            <li>slide 03</li>
+            <li>slide 04</li>
+            <li>slide 05</li>
+        </ul>
+
+    </div>
+    <p class="controls">
+        <span class="prev">prev</span>
+        <span class="next">next</span>
+    </p>
+
+
+    <script src="{% static 'js/reviewstage.js' %}"></script>
+{% endblock %}
