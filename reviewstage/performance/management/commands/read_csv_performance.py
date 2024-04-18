@@ -29,7 +29,7 @@ class Command(BaseCommand):
     def create_performance(self, data):
         try:
             Performance.objects.create(
-                performance_num=data['performance_num'],
+                performance_id=data['performance_id'],
                 title=data['title'],
                 location=data['location'],
                 start_date=data['start_date'],
