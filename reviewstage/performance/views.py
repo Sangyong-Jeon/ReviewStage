@@ -6,6 +6,9 @@ from django.views import generic
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.urls import reverse_lazy
 
+from performance.models import Performance, File
+from reviewstage.common.Enum import FileType
+
 
 def index(request):
     return HttpResponse("Hello, world.")
@@ -27,3 +30,15 @@ class CustomLoginView(LoginView):
 
 class HomeView(TemplateView):
     template_name = 'home.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        performances = Performance.objects.all()
+        files = File.objects.filter(type=FileType.POSTER.name)
+        performance_files = {}
+
+        for performance in performances:
+            performance_files[performance] = files.get(performance_id=performance)
+
+        context['performance_files'] = performance_files
+        return context

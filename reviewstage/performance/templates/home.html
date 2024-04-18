@@ -12,11 +12,9 @@
 
     <div class="slide_wrapper">
         <ul class="slides">
-            <li>slide 01</li>
-            <li>slide 02</li>
-            <li>slide 03</li>
-            <li>slide 04</li>
-            <li>slide 05</li>
+            {% for performance, file in performance_files.items %}
+                <li><img src="{{ file.image.url }}" alt="{{ file.name }}"></li>
+            {% endfor %}
         </ul>
 
     </div>
