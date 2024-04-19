@@ -44,7 +44,7 @@ class File(models.Model):
 
 
 class Bookmark(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='bookmarks')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='bookmark')
     performance = models.ForeignKey('Performance', on_delete=models.CASCADE)
 
     def __str__(self):
