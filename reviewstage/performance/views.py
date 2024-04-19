@@ -1,4 +1,4 @@
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView, LogoutView
 from django.http import HttpResponse
 from django.views.generic import TemplateView
 
@@ -26,6 +26,10 @@ class CustomLoginView(LoginView):
 
     def get_success_url(self):
         return reverse_lazy('performance:index')
+
+
+class CustomLogoutView(LogoutView):
+    next_page = reverse_lazy('performance:index')
 
 
 class HomeView(TemplateView):
