@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """
-인터파크 크롤링 코드
+인터파크 스크래핑 코드
 """
 
 import selenium
@@ -15,13 +15,13 @@ from time import sleep
 
 import pandas
 
-
+## 스크래핑 준비 ~ 진행
 def interpark_scraping(title, type, key):  # 코드(키), 타입(뮤지컬/연극), 작품명
     """
-    크롤링 준비 + 크롤링 함수 실행
+    스크래핑 준비 + 스크래핑 함수 실행
     - driver 생성 및 get
     - 예매 안내 팝업 제거
-    - info, review 크롤링
+    - info, review 스크래핑
     """
     options = webdriver.ChromeOptions()
     user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.4.1.6 Safari/537.36"
@@ -40,22 +40,22 @@ def interpark_scraping(title, type, key):  # 코드(키), 타입(뮤지컬/연�
     except:
         pass
 
-    # 공연 정보 크롤링
+    # 공연 정보 스크래핑
     info_scraping(title, type, key, driver)
 
-    # 관람 후기 크롤링
+    # 관람 후기 스크래핑
     review_scraping(title, type, key, driver)
 
     driver.quit()
 
 
-
+## 공연 정보 데이터 스크래핑
 def info_scraping(title, type, key, driver) :
-    ## ul class="info"
-    # performance_id, title / type location, (start_date, end_date), performance_time, age_requirement
-    
-    # info 데이터 크롤링
+    # 스크래핑 후 dataframe으로 만들어 csv로 저장하기 위한 기반
     data = [[key, title, type]]
+
+    # 공연 정보 스크래핑
+    # ul class="info"
     for element in driver.find_elements(By.CLASS_NAME, "infoItem")[:4]:
         data[0].append(element.text)
 
@@ -70,11 +70,9 @@ def info_scraping(title, type, key, driver) :
     df.to_csv(f"../data/rawdata/{type}_{title}_info.csv", encoding='utf-8-sig', index=False)
 
 
-## 관람 후기 데이터 크롤링
+## 관람 후기 데이터 스크래핑
 def review_scraping(title, type, key, driver) : # 작품명, 드라이버
-    """
-    관람 후기 데이터 크롤링 코드
-    """
+
     # 관람후기 페이지 접근
     elem = driver.find_element(By.XPATH, "/html/body/div[1]/div[2]/div[1]/div[2]/div[2]/nav/ul/li[4]/a")
     # 만약 캐스팅정보가 없어 관람후기가 3번째일 경우 (캐스팅 정보 탭 유무에 따라 page 번호가 달라진다 (3 or 4))
@@ -99,7 +97,7 @@ def review_scraping(title, type, key, driver) : # 작품명, 드라이버
     cur_p = 2 # 페이지 넘김용 변수
     review_id = 0     # 리뷰 id
 
-    # 크롤링 진행
+    # 스크래핑 진행
     for i in range(1, n//15+2) : # 페이지 별 최대 리뷰 15개(베스트 제외)
         reviews = driver.find_elements(By.CLASS_NAME, "bbsItem") # 페이지 별 리뷰들 (li class="bbsItem")
 
