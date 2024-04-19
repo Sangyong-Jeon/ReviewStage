@@ -27,7 +27,7 @@ class CustomLoginView(LoginView):
     template_name = 'registration/login.html'
 
     def get_success_url(self):
-        return reverse_lazy('performance:home')
+        return reverse_lazy('performance:index')
 
 
 class HomeView(TemplateView):
