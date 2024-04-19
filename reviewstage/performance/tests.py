@@ -1,10 +1,9 @@
-from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import TestCase
-
 from reviewstage.common.Enum import PerformanceType
-from .models import Performance, Review, File
+from .models import Performance, Review
+from django.urls import reverse
 from django.core.management import call_command
-from rest_framework.exceptions import ValidationError
+from django.contrib.auth.models import User
 
 
 class ReadCsvTestCase(TestCase):
@@ -43,14 +42,14 @@ class PerformanceTestCase(TestCase):
         self.assertLessEqual(len(self.performance.title), max_length)
 
     def test_performance_str_method(self):
-        expected_str = f'제목 : {self.performance.title}, 장소 : {self.performance.location}, 공연 날짜 : {self.performance.start_date} ~ {self.performance.end_date}, 공연 번호: {self.performance.performance_num}'
+        expected_str = f'제목 : {self.performance.title}, 장소 : {self.performance.location}, 공연 날짜 : {self.performance.start_date} ~ {self.performance.end_date}, 공연 번호: {self.performance.performance_id}'
         self.assertEqual(str(self.performance), expected_str)
 
 
 class ReviewTestCase(TestCase):
     def setUp(self):
         self.performance = Performance.objects.create(
-            performance_num='23001653213',
+            performance_id='23001653213',
             title='영웅',
             location='블루스퀘어 신한카드홀',
             start_date='2023.03.17',
@@ -68,9 +67,26 @@ class ReviewTestCase(TestCase):
             user_id='user',
             rating=4,
             date='2024.04.17',
-            likes_count=4,
+            like_count=4,
             view_count=17
         )
 
     def test_review_title(self):
         self.assertEqual(self.review.title, '추천합니다')
+
+
+class SignupLoginTestCase(TestCase):
+    def setUp(self):
+        self.username = 'testuser'
+        self.password = 'testpassword'
+        self.user = User.objects.create_user(username=self.username, password=self.password)
+        self.performance = Performance.objects.create(title='Test Performance Title')
+
+    def test_signup(self):
+        response = self.client.get(reverse('performance:signup'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'registration/signup.html')
+
+    def test_login(self):
+        login = self.client.login(username=self.username, password=self.password)
+        self.assertTrue(login)
