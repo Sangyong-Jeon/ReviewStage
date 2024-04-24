@@ -29,6 +29,9 @@
 - 기타 : Slack, Notion, Github
 
 
+![프로젝트 (1)](https://github.com/Sangyong-Jeon/ReviewStage/assets/80039556/803f0e65-2d09-4986-ba5e-dbabb93d57c6)
+
+
 # 2. 프로젝트 주제 선정 이유
 
 ![image](https://github.com/Sangyong-Jeon/ReviewStage/assets/80039556/90884ed8-4b1b-4c2e-acde-d2d1dda7eb92)
@@ -59,7 +62,7 @@
 
 ## 3-2. 구현 사항 설명
 
-### 스크래핑 설명
+### 🚀 스크래핑 설명
 ![image](https://github.com/Sangyong-Jeon/ReviewStage/assets/80039556/e9c3db45-70a0-4b86-ab60-4ed769ece459)
 
 - 스크래핑 전, 후기 1000건이 넘는 뮤지컬 5개, 연극 5개를 선정해 URL 정리
@@ -68,17 +71,17 @@
   - 관람 후기 : 작성자id, 작성일, 조회수, 공감수, 별점, 제목, 본문
 - 동적인 사이트이기에 `Selenium` 활용해 크롤링 진행
 
-### 스크래핑 진행
+### 🚀 스크래핑 진행
 [interpark_scraping.py](https://github.com/Sangyong-Jeon/ReviewStage/blob/main/scraping/interpark_scraping.py) 로 스크래핑 진행
 
-### 스크래핑 결과
+### 🚀 스크래핑 결과
 공연 정보 : 총 10건
 ![image](https://github.com/Sangyong-Jeon/ReviewStage/assets/80039556/a4fbc3a2-152b-4f61-9cc5-a9aa085286c7)
 
 관람 후기 : 총 24,854건
 ![image](https://github.com/Sangyong-Jeon/ReviewStage/assets/80039556/4a19d8be-8ae7-4439-8fe7-6d06d2448436)
 
-### 데이터 클리닝
+### 🚀 데이터 클리닝
 
 - 필요한 형식에 맞지 않는 데이터 전처리를 실행
 - [공연 정보 데이터 전처리 파일](https://github.com/Sangyong-Jeon/ReviewStage/blob/main/preprocessing/preprocessing_info.ipynb)
@@ -103,13 +106,13 @@
   
   <img width="372" alt="image" src="https://github.com/Sangyong-Jeon/ReviewStage/assets/80039556/20641816-4ba5-4753-b0a4-d7a17ad16722">
 
-### wordcloud 시각화
+### 🚀 wordcloud 시각화
 - [wordcloud 시각화 파일](https://github.com/Sangyong-Jeon/ReviewStage/blob/main/visualization/review_wordcloud.ipynb)
 - 연극, 뮤지컬을 의미하는 performance emoji를 마스크로 만들어 그 모양에 맞게 구름을 그리도록 함
 
 <img width="500" alt="image" src="https://github.com/Sangyong-Jeon/ReviewStage/assets/80039556/a8bf402c-99e6-4228-b11d-32d4ec6bf5ff">
 
-### CSV 파일 DB 저장
+### 🚀 CSV 파일 DB 저장
 - 크롤링 및 전처리 완료된 CSV 파일을 DB 저장
 - [공연 CSV 데이터를 DB 저장하는 파일](https://github.com/Sangyong-Jeon/ReviewStage/blob/main/reviewstage/performance/management/commands/read_csv_performance.py)
 - [리뷰 CSV 데이터를 DB 저장하는 파일](https://github.com/Sangyong-Jeon/ReviewStage/blob/main/reviewstage/performance/management/commands/read_csv_review.py)
@@ -117,7 +120,7 @@
   ![image](https://github.com/Sangyong-Jeon/ReviewStage/assets/80039556/6284b898-70fe-4621-885d-a607b39dff38)
   ![image](https://github.com/Sangyong-Jeon/ReviewStage/assets/80039556/4a9f5955-8e7b-4c77-9f15-1add9493b10a)
 
-### 웹 페이지
+### 🚀 웹 페이지
 <img width="500" alt="image" src="https://github.com/Sangyong-Jeon/ReviewStage/assets/80039556/66bee380-c112-4762-b026-5d2184612e3b">
 
 - Django Template Engine 을 사용하여 웹 페이지 작성
@@ -125,11 +128,11 @@
 - 포스터를 클릭하면 AJAX 비동기 요청으로 공연 정보와 리뷰 시각화 이미지가 동적으로 변함
 - JS를 통해 포스터 무한 슬라이드 기능
 
-### 회원/로그인/로그아웃
+### 🚀 회원/로그인/로그아웃
 - 작성된 기준에 맞게 회원가입을 해야하며, 내용이 채워지지 않으면 회원가입 불가
 - 로그인 시, 유효성 검사를 거친 뒤 로그인 실행
 
-### DB 모델링 및 Django 모델
+### 🚀 DB 모델링 및 Django 모델
 ![image](https://github.com/Sangyong-Jeon/ReviewStage/assets/80039556/d6e5b2d0-9afa-4808-a1b1-d5eaa90d19cb)
 
 - erdcloud 사이트를 이용하여 같이 모델링 진행
