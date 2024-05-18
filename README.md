@@ -33,6 +33,14 @@
 ![프로젝트 (1)](https://github.com/Sangyong-Jeon/ReviewStage/assets/80039556/803f0e65-2d09-4986-ba5e-dbabb93d57c6)
 
 
+### 🧐 만약 개선을 한다면?
+
+기존 아키텍처 구조
+<img width="630" alt="image" src="https://github.com/Sangyong-Jeon/ReviewStage/assets/80039556/599da5d7-5e3b-4a73-874e-3663684bbf98">
+
+개선한 아키텍처 구조
+<img width="635" alt="image" src="https://github.com/Sangyong-Jeon/ReviewStage/assets/80039556/afc79267-e555-4561-b19b-03c89dbc97d8">
+
 # 2. 프로젝트 주제 선정 이유
 
 ![image](https://github.com/Sangyong-Jeon/ReviewStage/assets/80039556/90884ed8-4b1b-4c2e-acde-d2d1dda7eb92)
